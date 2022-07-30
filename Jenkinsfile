@@ -6,19 +6,19 @@ pipeline {
     agent any 
     stages { 
         
-        stage('test') {
+        /*stage('test') {
             steps { 
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_USR' 
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW'
             }
-        }
-        /*stage('Docker Images') {
+        }*/
+        stage('Docker build') {
             steps {
-                sh "docker-compose build"
+                sh 'docker-compose up --no-color -d --wait'
                 echo 'Docker-compose-build Build Image Completed'
             }
         }
-        stage('Login to Docker Hub') {          
+        /*stage('Login to Docker Hub') {          
            steps{                          
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR --password-stdin'                     
                 echo 'Login Completed'      
@@ -27,6 +27,6 @@ pipeline {
            steps{                            
                sh 'sudo docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'           
                echo 'Push Image Completed'       
-         }*/           
+         } */         
 }
 }
