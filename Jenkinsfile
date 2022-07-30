@@ -14,7 +14,7 @@ pipeline {
         }*/
         stage('Docker build') {
             steps {
-                sh 'docker-compose up --no-color -d --wait'
+                sh 'docker-compose up -f --no-color -d --wait'
                 echo 'Docker-compose-build Build Image Completed'
             }
         }
