@@ -1,16 +1,32 @@
 pipeline {
-    agent any 
-    stages {
-        stage('install client depondances') {
-            steps {
-                sh "cd client && npm install"
-            }
-        }
-        stage('install server depondance') {
-            steps {
-                sh "cd .."
-                sh "cd server && npm install"  
-            }
-        }
+    environment {
+        DOCKERHUB_CREDENTIALS_LOCAL = credentials("DOCKERHUB_CREDENTIALS")
+
     }
+    agent any 
+    stages { 
+        
+        stage('test') {
+            steps { 
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_USR' 
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW'
+            }
+        }
+        /*stage('Docker Images') {
+            steps {
+                sh "docker-compose build"
+                echo 'Docker-compose-build Build Image Completed'
+            }
+        }
+        stage('Login to Docker Hub') {          
+           steps{                          
+                sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR --password-stdin'                     
+                echo 'Login Completed'      
+            }     
+        stage('Push Image to Docker Hub') {         
+           steps{                            
+               sh 'sudo docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'           
+               echo 'Push Image Completed'       
+         }*/           
+}
 }
