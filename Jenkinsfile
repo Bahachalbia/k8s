@@ -1,17 +1,15 @@
 pipeline {
     agent any 
     stages {
-        stage('install client depondance') {
+        stage('install client depondances') {
             steps {
-                sh "cd client"
-                sh "npm install"  
+                sh "cd client && npm install"
             }
         }
         stage('install server depondance') {
             steps {
                 sh "cd .."
-                sh "cd server"
-                sh "npm install"  
+                sh "cd server && npm install"  
             }
         }
     }
