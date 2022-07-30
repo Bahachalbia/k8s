@@ -14,8 +14,7 @@ pipeline {
         }*/
         stage('Docker build client') {
             steps {
-                sh 'cd client'
-                sh 'docker build -t bouregbaslah/memoriesui:latest .'
+                sh 'cd client && docker build -t bouregbaslah/memoriesui:latest .'
             }
         }
         /*stage('Docker build') {
