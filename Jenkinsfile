@@ -21,12 +21,14 @@ pipeline {
            steps{                          
                 sh 'echo $DOCKERHUB_CREDENTIALS_LOCAL_PSW | docker login -u $DOCKERHUB_CREDENTIALS_LOCAL_USR --password-stdin'                     
                 echo 'Login Completed'      
-            } 
+            }
+        } 
         stage('Push Image client to Docker Hub') {         
            steps{                            
                sh 'docker push bouregbaslah/memoriesui:latest'           
                echo 'Push Image Completed'       
-         } 
+         }
+        } 
         /*stage('Docker build') {
             steps {
                 sh 'docker-compose up -f --no-color -d --wait'
