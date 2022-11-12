@@ -15,7 +15,9 @@ pipeline {
 
         stage('push') {
             steps {
-                sh "docker push front:latest"
+                withDockerRegistry([ credentialsId: "docker_jinkins", url: "" ]) {
+                    bat "docker push bahachalbia/front:latest"
+                
             }
         }
         stage('push22') {
