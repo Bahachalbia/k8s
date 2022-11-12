@@ -1,0 +1,39 @@
+version: '3'
+services:
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - k8s_mynetwork1
+    volumes:
+      - mongo-data-1:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  front:
+    image: front
+    container_name: front
+    ports:
+      - 3001:80
+    networks:
+      - k8s_mynetwork1
+
+  back:
+    image: back
+    container_name: back
+    ports:
+       - 5001:5000
+    networks:
+       - k8s_mynetwork1
+    restart: always
+networks:
+  k8s_mynetwork1:
+    driver: bridge
+volumes:
+ mongo-data-1:
+    driver: local
+
