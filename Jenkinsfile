@@ -15,12 +15,12 @@ pipeline {
 
         stage('push') {
             steps {
-                sh "docker push bahachalbia/front:latest"
+                sh "docker push front:latest"
             }
         }
         stage('push22') {
             steps {
-                sh "docker push bahachalbia/back:latest"
+                sh "docker push back:latest"
             }
         }
 
